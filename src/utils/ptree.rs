@@ -5,12 +5,12 @@ struct Pnode {
     hmap: HashMap<char, Child>,
 }
 
-type Child = Box<Pnode>;
-
 pub struct Ptree {
     root: Child,
     size: usize,
 }
+
+type Child = Box<Pnode>;
 
 fn getlvl(s1: &str, s2: &str) -> usize {
     let mut count: usize = 0;
