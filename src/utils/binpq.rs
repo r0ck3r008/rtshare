@@ -53,4 +53,23 @@ impl BinPq {
             self.vec.swap(curr, parent);
         }
     }
+
+    pub fn remove(&mut self, val: usize) -> Option<usize> {
+        let mut curr = self.vec.iter().position(|&x| x == val)?;
+        let res = self.vec.swap_remove(curr);
+        //bbl down
+        while curr < self.vec.len() {
+            let mut child = 2 * curr + 1;
+            if (self.compfn)(curr, child) {
+                child += 1;
+                if (self.compfn)(curr, child) {
+                    break;
+                }
+            }
+            self.vec.swap(curr, child);
+            curr = child;
+        }
+
+        return Some(res);
+    }
 }
