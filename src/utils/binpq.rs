@@ -21,12 +21,6 @@ fn getparent(indx: usize) -> usize {
     }
 }
 
-fn swap(vec: &mut Vec<usize>, indx1: usize, indx2: usize) {
-    let tmp = vec[indx1];
-    vec[indx1] = vec[indx2];
-    vec[indx2] = tmp;
-}
-
 // Public impl
 impl BinPq {
     pub fn new(compfn: Compfn) -> Self {
@@ -56,7 +50,7 @@ impl BinPq {
             if !(self.compfn)(curr, parent) {
                 break;
             }
-            swap(&mut self.vec, curr, parent);
+            self.vec.swap(curr, parent);
         }
     }
 }
